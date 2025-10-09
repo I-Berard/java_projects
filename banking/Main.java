@@ -63,7 +63,7 @@ public class Main {
 
                         case 3:
                             record.addUserToRecord();
-                        
+                            break;
                         default:
                             break;
                     }
@@ -83,10 +83,5 @@ public class Main {
         default:
             break;
     }
-
-    System.out.println();
-    
-
-
    } 
 }
