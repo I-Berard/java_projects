@@ -16,16 +16,29 @@ public class Records {
         this.balance = balance;
     }
 
-    public void addUserToRecord(){
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("records.txt", true))){
-            String line = this.name + "," + this.balance;
-            writer.write(line);
+    public void addUserToRecord() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("records.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[0].equals(this.name)) {
+                    System.out.println("User already exists in the records");
+                    return;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("records.txt", true))) {
+            writer.write(this.name + "," + this.balance);
             writer.newLine();
-            System.out.println("Added a new user to the transactions");
-        }catch(IOException e){
+            System.out.println("Added new user to the records");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     public Long readBalance(){
         try(BufferedReader reader = new BufferedReader(new FileReader("records.txt"))){
@@ -37,7 +50,7 @@ public class Records {
                 Long balance = Long.parseLong(parts[1]);
 
                 if(this.name.equals(name)){
-                    System.out.println(line);
+                    // System.out.println(line);
                     return balance;
                 }
             }
@@ -64,7 +77,7 @@ public class Records {
 
             while((line = reader.readLine()) != null){
                 String[] parts = line.split(",");
-                if (parts.length < 3) continue;
+                if (parts.length < 2) continue;
 
                 String name = parts[0];
                 Long bal = Long.parseLong(parts[1]);

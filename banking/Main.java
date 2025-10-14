@@ -33,16 +33,18 @@ public class Main {
             char[] password = console.readPassword("Enter your password: ");
             
             User loginUser = new User(name, username, new String(password));
+            System.out.println("");
             boolean authenticated = loginUser.authenticateUser();
 
             if(authenticated){
                 char c = 'n';
                 do{
-                    System.out.println("===== Actions that you can do =====");
+                    System.out.println("\n===== Actions that you can do =====");
                     System.out.println("1. Check balance");
                     System.out.println("2. Transfer funds");
                     System.out.println("3. Be added to the ledger");
-                    String _input = console.readLine("Input here");
+                    String _input = console.readLine("\nInput here: ");
+                    System.out.println("");
                     int choose = Integer.parseInt(_input);
 
                     Records record = new Records(username, 10000L);
@@ -70,13 +72,13 @@ public class Main {
                     
                     
 
-                    String ch = console.readLine("Continue or stop(y/n): ");
-                    if (ch != null && !ch.isEmpty()) {
-                        c = ch.charAt(0);
-                    } else {
-                        System.out.println("No input entered!");
-                    }
-                }while(c == 'Y' || c == 'y');
+                    // String ch = console.readLine("Continue or stop(y/n): ");
+                    // if (ch != null && !ch.isEmpty()) {
+                    //     c = ch.charAt(0);
+                    // } else {
+                    //     System.out.println("No input entered!");
+                    // }
+                }while(true);
             }
 
             break;

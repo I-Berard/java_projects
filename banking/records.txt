@@ -1,1 +1,2 @@
-Berard,10000
+Mutesi,14000
+Berard,6000
