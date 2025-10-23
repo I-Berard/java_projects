@@ -16,8 +16,7 @@ public class IOStream {
         String line;
         while (c.hasNext()) {
             line = c.nextLine();
-            if(line.equalsIgnoreCase("exit"))
-            break;
+            if(line.equalsIgnoreCase("exit")) break;            
             System.out.println("Entered line: " + line);
             System.out.print("Enter the data you want to write in a file (type 'exit' to quit): ");
         }
