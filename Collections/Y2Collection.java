@@ -3,15 +3,19 @@ import java.util.*;
 public class Y2Collection {
     
     public static void main(String[] args) {
-        Collection<Integer> c = new ArrayList<>();
-        c.add(4);
-        c.add(5);
+        List<Integer> c = new ArrayList<>();
+        c.add(49);
+        c.add(52);
+        c.add(35);
+        c.add(1, 19);
+        // c.remove(0);
 
-        Iterator<Integer> It = c.iterator();
-        while(It.hasNext()){
-            int value = It.next();
-            System.out.println(value);
-        }
-        
+        Collections.sort(c, new Comparator<Integer>() {
+            public int compare(Integer a, Integer b){
+                return (a % 10) - (b % 10);
+            }
+        });
+
+        System.out.println(c);
     }
 }
