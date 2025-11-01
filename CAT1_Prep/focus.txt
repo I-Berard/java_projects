@@ -1,0 +1,32 @@
+Collections
+    >Comparator
+    >Comparable
+
+Streams
+    Bytes:
+        >FileInputStream
+        >FileOutputStream
+        >BufferedInputStream
+        >BufferedOutputStream
+        
+    Characters
+        >FileReader
+        >FileWriter
+        >BufferedReader
+        >BufferedWriter(PrintWriter)
+
+    Primitives
+        >DataInputStream
+        >DataOutputStream
+
+    Objects
+        >ObjectInputStream
+        >ObjectOutputStream
+
+    Scanner
+        >Read data from files and System.in
+        >Used for data formatting
+        
+Exceptions
+    >Checked
+    >Unchecked

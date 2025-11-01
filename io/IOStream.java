@@ -20,6 +20,7 @@ public class IOStream {
             System.out.println("Entered line: " + line);
             System.out.print("Enter the data you want to write in a file (type 'exit' to quit): ");
         }
+        c.close();
     }
 }
 

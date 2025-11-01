@@ -3,7 +3,7 @@ import java.io.*;
 public class EmployeeMain {    
     public static void main(String[] args) throws ClassNotFoundException{
         File file = new File("employee.ser");
-        Employee em = new Employee("Irakoze", "Berard");
+        // Employee em = new Employee("Irakoze", "Berard");
         
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))){
             Employee em2 = (Employee)in.readObject();
