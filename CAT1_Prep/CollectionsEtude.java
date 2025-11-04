@@ -27,7 +27,7 @@ public class CollectionsEtude {
         list.add(new Student(8, "Florissa"));
 
         // Collections.sort(list);
-        // System.out.println(list);
+        System.out.println(list);
 
         Collections.sort(list, new Comparator<Student>() {
             public int compare(Student a, Student b){

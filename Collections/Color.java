@@ -1,5 +1,5 @@
 public class Color {
-    public static class Shape{
+    private static class Shape{
         String name;
 
         Shape(){
@@ -31,15 +31,26 @@ public class Color {
         }
     
         public void getName(){
-            System.out.println("THis is a triable");
+            System.out.println("THis is a triangle");
+        }
+
+        public void print(){
+            System.out.println(name);
         }
     }
 
     public static void main(String[] args) {
-        Triangle tr1 = new Triangle();
-        tr1.getName();
+        // Triangle tr1 = new Triangle();
+        // tr1.getName();
 
-        Shape tr2 = new Triangle();
-        tr2.getName();
+        Triangle tr2 = new Triangle();
+        Shape s = (Shape)tr2;
+        s.getName();
+
+        Shape shape = new Triangle();
+        Triangle triangle = (Triangle)shape;
+        triangle.getName();
+
+        // ((Triangle) tr2).print();
     }
 }

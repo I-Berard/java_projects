@@ -136,10 +136,10 @@ public class EmployeeMain {
         System.out.println(emp1.equals(emp2));
         System.out.println(set.size());
 
-        Map<Employee, String> map = new HashMap<>();
-        map.put(emp1, "first value");
-        map.put(emp2, "duplicate value");
+        // Map<Employee, String> map = new HashMap<>();
+        // map.put(emp1, "first value");
+        // map.put(emp2, "duplicate value");
 
-        System.out.println(map);
+        // System.out.println(map);
     }
 }
