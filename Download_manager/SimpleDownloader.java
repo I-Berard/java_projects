@@ -7,7 +7,8 @@ public class SimpleDownloader {
         String outputFile = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
         // System.out.println(outputFile);
 
-        URL url = new URL(fileUrl); // This allows you to create a url instance, it provides different methodologies for different things
+        URI uri = new URI(fileUrl); // This allows you to create a url instance, it provides different methodologies for different things
+        URL url = uri.toURL();
         HttpURLConnection connection = (HttpURLConnection) url.openConnection(); // Here you are making a connection to the server and casting it to an HTTP cause you know that it is already http(s)
         InputStream in = connection.getInputStream(); // This is a method that allows you to get the data from the server
         FileOutputStream out = new FileOutputStream(outputFile); // Open an outputstream
