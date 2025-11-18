@@ -1,11 +1,14 @@
 import java.io.*;
 import java.net.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class SimpleDownloader {
     public static void main(String[] args) throws Exception{
         String fileUrl = "https://raw.githubusercontent.com/github/explore/main/topics/java/java.png";
-        String outputFile = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
-        // System.out.println(outputFile);
+        String output = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
+        String outputFile = Paths.get(System.getProperty("user.home"), "Downloads", output).toString();
+        System.out.println(outputFile);
 
         URI uri = new URI(fileUrl); // This allows you to create a url instance, it provides different methodologies for different things
         URL url = uri.toURL();
