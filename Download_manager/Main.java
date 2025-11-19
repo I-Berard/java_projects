@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static long sendHead(String fileUrl) throws Exception {
+    public static boolean sendHead(String fileUrl) throws Exception {
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest headRequest = HttpRequest.newBuilder()
@@ -19,14 +19,16 @@ public class Main {
         HttpResponse<Void> headerResponse = client.send(headRequest, BodyHandlers.discarding());
 
         Optional<String> contentLength = headerResponse.headers().firstValue("Content-Length");
+        Optional<String> acceptRange = headerResponse.headers().firstValue("Accept-Ranges");
+        System.out.println(acceptRange.get());
 
         if(contentLength.isPresent()){
             long size = Long.parseLong(contentLength.get());
             System.out.println("Server supports multipart downloading");
-            return size;
+            return true;
         }else{
             System.out.println("Server doesn't support multipart download");
-            return -1;
+            return false;
         }
     }
     public static void main(String[] args) {
@@ -34,10 +36,10 @@ public class Main {
             System.out.print("Input the url of the file you want to download: ");
             String fileUrl = c.nextLine();
 
-            Long response = sendHead(fileUrl);
+            boolean response = sendHead(fileUrl);
             System.out.println(response);
-            
-            if(response == -1){
+
+            if(response){
                 MultiPartDownloader.downloadFile(fileUrl);
             }else{
                 SimpleHTTPDownloader.downloadFile(fileUrl);
