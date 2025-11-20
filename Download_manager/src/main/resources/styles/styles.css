@@ -1,0 +1,49 @@
+/* TableView styling */
+.table-view {
+    -fx-background-color: #1e1e2f;
+    -fx-border-color: #333;
+    -fx-table-cell-border-color: transparent;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #2c2c3f;
+}
+
+.table-view .column-header, .table-view .column-header .label {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+/* ProgressBar styling */
+.progress-bar {
+    -fx-accent: #4caf50;
+    -fx-control-inner-background: #444;
+}
+
+/* TextField styling */
+.text-field {
+    -fx-background-color: #2c2c3f;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #aaa;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Button styling */
+.button {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 5px;
+    -fx-padding: 8px 15px;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+.button:pressed {
+    -fx-background-color: #3e8e41;
+}
