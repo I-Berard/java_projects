@@ -24,7 +24,7 @@ public class Main {
         System.out.println(acceptRange.get());
 
         if(contentLength.isPresent()){
-            long size = Long.parseLong(contentLength.get());
+            // long size = Long.parseLong(contentLength.get());
             System.out.println("Server supports multipart downloading");
             return true;
         }else{
@@ -41,9 +41,9 @@ public class Main {
             System.out.println(response);
 
             if(response){
-                MultiPartDownloader.downloadFile(fileUrl);
+                MultiPartDownloader.downloadFile(fileUrl, new app.models.DownloadItem(fileUrl));
             }else{
-                SimpleHTTPDownloader.downloadFile(fileUrl);
+                SimpleHTTPDownloader.downloadFile(fileUrl, new app.models.DownloadItem(fileUrl));
             }
         }catch(Exception e){
             e.printStackTrace();
