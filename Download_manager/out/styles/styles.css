@@ -1,0 +1,121 @@
+/* Root and general font */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #1f1f2f;
+}
+
+/* Labels / Titles */
+.label {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.label#title {
+    -fx-font-size: 26px;
+    -fx-text-fill: #4caf50;
+}
+
+/* TextFields */
+.text-field {
+    -fx-background-color: #2c2c3f;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #aaaaaa;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: #444;
+    -fx-padding: 5px 10px;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #4caf50, #45a049);
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 4, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #5bc55b, #4caf50);
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #3e8e41, #398039);
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: #2a2a3f;
+    -fx-border-color: #333;
+    -fx-text-fill: #ffffff;
+    -fx-cell-hover-color: rgba(76, 175, 80, 0.1);
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #33334d;
+}
+
+.table-view .column-header, .table-view .column-header .label {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: rgba(76, 175, 80, 0.2);
+}
+
+/* ProgressBar */
+.progress-bar {
+    -fx-accent: #4caf50;
+    -fx-control-inner-background: #444;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+}
+
+/* HBox / VBox spacing */
+.hbox, .vbox {
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+}
+
+/* ScrollPane styling if needed */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: #333;
+}
+
+/* TableView main styling */
+.table-view {
+    -fx-background-color: #2a2a3f;
+    -fx-border-color: #333;
+    -fx-text-fill: #ffffff;
+    -fx-cell-hover-color: rgba(76, 175, 80, 0.1);
+}
+
+/* Column headers container */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #2c2c3f, #33334d);
+    -fx-border-color: #444;
+    -fx-border-width: 0 0 1 0; /* bottom border */
+}
+
+/* Individual header labels */
+.table-view .column-header, .table-view .column-header .label {
+    -fx-text-fill: #222222;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 5px 10px;
+}
+
+/* Hover effect on headers */
+.table-view .column-header:hover {
+    -fx-background-color: #3a3a5a;
+}
+
+/* Selected row styling */
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: rgba(76, 175, 80, 0.2);
+}
+
