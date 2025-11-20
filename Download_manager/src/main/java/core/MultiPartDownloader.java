@@ -1,96 +1,103 @@
 package core;
-// import java.io.File;
+
+import app.models.DownloadItem;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.net.URI;
-// import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.net.http.*;
+import java.nio.file.*;
+import java.util.concurrent.*;
 
 public class MultiPartDownloader {
-   
+
     public static final int NUM_THREADS = 4;
 
-    public static void downloadFile(String fileUrl) throws Exception{
-        //Find the file size
+    public static void downloadFile(String fileUrl, DownloadItem item) throws Exception {
+
+        item.setStatus("Fetching server info...");
+
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest headRequest = HttpRequest.newBuilder()
-            .uri(new URI(fileUrl))
-            // .method("HEAD", HttpRequest.BodyPublishers.noBody())
-            .HEAD()
-            .build();
+                .uri(new URI(fileUrl))
+                .method("HEAD", HttpRequest.BodyPublishers.noBody())
+                .build();
 
-        HttpResponse<Void> headResponse = client.send(headRequest, HttpResponse.BodyHandlers.discarding());
+        HttpResponse<Void> headResponse =
+                client.send(headRequest, HttpResponse.BodyHandlers.discarding());
 
-        Long fileSize = Long.parseLong(headResponse.headers().firstValue("Content-Length").orElseThrow());
-        // System.out.println(fileSize);
+        long fileSize = Long.parseLong(
+                headResponse.headers().firstValue("Content-Length").orElseThrow()
+        );
 
-        //Prepare location where to store and calculate ranges
-        long partSize = fileSize / NUM_THREADS;
-        ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
-        CompletableFuture<?>[] futures = new CompletableFuture[NUM_THREADS];
+        item.setStatus("File size: " + fileSize / 1024 + " KB");
 
         String filename = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
         Path outputDir = Paths.get(System.getProperty("user.home"), "Downloads");
         Files.createDirectories(outputDir);
 
-        //Download chunks
-        for(int i = 0; i < NUM_THREADS; i++){
-            final int partNumber = i;
-            long start = partNumber * partSize;
-            long end = (i == NUM_THREADS) ? fileSize - 1 : (start + partSize - 1);
+        long partSize = fileSize / NUM_THREADS;
+        ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
+        CompletableFuture<?>[] futures = new CompletableFuture[NUM_THREADS];
 
-            Path partPath = outputDir.resolve(filename + ".part" + partNumber);
-            
+        final long[] totalDownloaded = {0};
+
+        item.setProgress(0);
+        item.setStatus("Downloading in " + NUM_THREADS + " parts...");
+
+        for (int i = 0; i < NUM_THREADS; i++) {
+
+            final int partNum = i;
+            long start = partNum * partSize;
+            long end = (partNum == NUM_THREADS - 1) ? fileSize - 1 : (start + partSize - 1);
+
+            Path partPath = outputDir.resolve(filename + ".part" + partNum);
+
             futures[i] = CompletableFuture.runAsync(() -> {
                 try {
                     HttpRequest request = HttpRequest.newBuilder()
-                        .uri(new URI(fileUrl))
-                        .header("Range", "bytes=" + start + "-" + end)
-                        .GET()
-                        .build();
-                    
+                            .uri(new URI(fileUrl))
+                            .header("Range", "bytes=" + start + "-" + end)
+                            .GET()
+                            .build();
+
                     client.send(request, HttpResponse.BodyHandlers.ofFile(partPath));
-                    System.out.println("Download part " + partNumber);
+
+                    long partSizeDownloaded = Files.size(partPath);
+
+                    synchronized (totalDownloaded) {
+                        totalDownloaded[0] += partSizeDownloaded;
+                        double progress = (double) totalDownloaded[0] / fileSize;
+                        item.setProgress(progress);
+                        item.setStatus("Downloading... " + (int) (progress * 100) + "%");
+                    }
+
                 } catch (Exception e) {
+                    item.setStatus("Error in part " + partNum);
                     e.printStackTrace();
                 }
             }, executor);
         }
 
-        // Wait for all the parts to finish downloading
         CompletableFuture.allOf(futures).join();
         executor.shutdown();
 
-        //Merge all parts 
-        Path finaleFile = outputDir.resolve(filename);
-        try(OutputStream out = new FileOutputStream(finaleFile.toFile())){
-            for( int i = 0; i< NUM_THREADS; i++){
+        item.setStatus("Merging parts...");
+        Path finalFile = outputDir.resolve(filename);
+
+        try (OutputStream out = new FileOutputStream(finalFile.toFile())) {
+            for (int i = 0; i < NUM_THREADS; i++) {
                 Path partPath = outputDir.resolve(filename + ".part" + i);
                 Files.copy(partPath, out);
                 Files.delete(partPath);
+
+                double mergeProgress = (double) (i + 1) / NUM_THREADS;
+                item.setProgress(mergeProgress);
+                item.setStatus("Merging... " + ((i + 1) * 25) + "%");
             }
-
-            System.out.println("Merged into one file");
-        }catch(Exception e){
-            e.printStackTrace();
         }
 
-    } 
-
-    public static void main(String[] args) {
-        try{
-            downloadFile("https://raw.githubusercontent.com/github/explore/main/topics/java/java.png");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        item.setProgress(1);
+        item.setStatus("Completed");
     }
 }
