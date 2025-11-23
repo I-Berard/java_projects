@@ -43,6 +43,7 @@ public class MultiplierMain {
                     e.printStackTrace();
                 }
             }
+            System.out.println("From thread 1 " + counter.count);
         };
 
         Runnable counter2 = () -> {
@@ -54,13 +55,15 @@ public class MultiplierMain {
                     e.printStackTrace();
                 }
             }
+            System.out.println("From thread 2 " + counter.count);
         };
 
         Thread t1 = new Thread(counter1);
         Thread t2 = new Thread(counter2);
 
-        t1.start();
         t2.start();
+        t1.start();
+
         t1.join();
         t2.join();
 
