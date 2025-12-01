@@ -1,7 +1,7 @@
 class BankAccount {
     public double balance;
     public String name;
-    final double MAX_BALANCE = 1100;
+    final double MAX_BALANCE = 1200;
     
     public BankAccount(double balance, String name) {
         this.balance = balance;
@@ -32,7 +32,8 @@ class BankAccount {
 
         while(this.balance < amount){
             try {
-                wait();
+                wait(20);
+                System.out.println("Waiting for withdrawal");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -44,13 +45,14 @@ class BankAccount {
     public synchronized void deposit(double amount){
         while(balance + amount > MAX_BALANCE){
             try {
-                wait();
+                wait(20);
+                System.out.println("Waiting for depositing...");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         this.balance += amount;
-        notifyAll();
+        notifyAll();    
     }
 }
 
