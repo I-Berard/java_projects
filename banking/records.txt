@@ -1,2 +1,3 @@
-Mutesi,14000
-Berard,6000
+Mutesi,18000
+Berard,4000
+larissa,8000

@@ -82,7 +82,7 @@ public class MultiPartDownloader {
         CompletableFuture.allOf(futures).join();
         executor.shutdown();
 
-        item.setStatus("Merging parts...");
+        item.setStatus("Merging parts..."); 
         Path finalFile = outputDir.resolve(filename);
 
         try (OutputStream out = new FileOutputStream(finalFile.toFile())) {

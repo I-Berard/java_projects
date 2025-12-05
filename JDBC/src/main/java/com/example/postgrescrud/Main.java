@@ -1,4 +1,6 @@
+package com.example.postgrescrud;
 import java.sql.*;
+
 
 public class Main {
     public static final String URL = "jdbc:postgresql://localhost:5432/java_db";
@@ -6,7 +8,7 @@ public class Main {
     public static final String PASSWORD = "java@123";
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException{
-        Class.forName("org.posgresql.Driver");
+        Class.forName("org.postgresql.Driver");
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 

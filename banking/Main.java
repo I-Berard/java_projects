@@ -15,7 +15,7 @@ public class Main {
     System.out.println("=============================\n\n");
     System.out.println("Please choose");
     System.out.println("1. Create new account");
-    System.out.println("2. Enter your account");
+    System.out.println("2. Log into your account");
     String input = console.readLine("Input here: ");
     int choice = Integer.parseInt(input);
 
@@ -37,7 +37,7 @@ public class Main {
             boolean authenticated = loginUser.authenticateUser();
 
             if(authenticated){
-                char c = 'n';
+                // char c = 'n';
                 do{
                     System.out.println("\n===== Actions that you can do =====");
                     System.out.println("1. Check balance");
