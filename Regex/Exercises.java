@@ -21,10 +21,25 @@ public class Exercises {
         return isImage;
     }
 
+    public static boolean isPhoneNumber(String string){
+        boolean isPhoneNumber = Pattern.compile("\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]\\d{4}").matcher(string).matches();
+        return isPhoneNumber;
+    }
+
+    public static boolean isHexColorCode(String string){
+        boolean isHexColorCode = Pattern.compile("^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6})$").matcher(string).matches();
+        return isHexColorCode;
+    }
+
     public static void main(String[] args) {
         System.out.println(isLowerCase("hello"));
         System.out.println(isThreeDigits("234"));
         System.out.println(startsWithA("aasderz"));
         System.out.println(isImage("hello.png"));
+        System.out.println(isPhoneNumber("123-456-7890"));
+        System.out.println(isPhoneNumber("(123) 456-7890"));
+        System.out.println(isPhoneNumber("123 456 7890"));
+        System.out.println(isPhoneNumber("123.456.7890"));
+        System.out.println(isHexColorCode("#FFF"));
     }
 }

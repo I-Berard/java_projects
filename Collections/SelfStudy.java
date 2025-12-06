@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.Comparator;
 
 public class SelfStudy {
-    public static class Person implements Comparable<Person>{
+    public static class Person {
         public String name;
         public int age;
 
@@ -20,13 +20,14 @@ public class SelfStudy {
             return age + " - " + name;
         }
 
-        public int compareTo(Person other){
-            if(this.age < other.age){
-                return 1;
-            }else{
-                return -1;
-            }
-        }
+        // @Override
+        // public int compareTo(Person other){
+        //     if(this.age < other.age){
+        //         return 1;
+        //     }else{
+        //         return -1;
+        //     }
+        // }
     }    
 
     public static void main(String[] args) {
@@ -40,18 +41,20 @@ public class SelfStudy {
         list.add(p2);
         list.add(p3);
 
-        // Collections.sort(list, new Comparator<Person>() {
-        //     public int compare(Person a, Person b){
-        //         if(a.age > b.age){
-        //             return 1;
-        //         }else{
-        //             return -1;
-        //         }
-        //         // return a.age - b.age;
-        //     }
-        // });
+        Comparator<Person> comparator = new Comparator<Person>() {
+            public int compare(Person a, Person b){
+                if(a.age % 10 > b.age % 10){
+                    return 1;
+                }else{
+                    return -1;
+                }
+                // return a.age - b.age;
+            }
+        };
 
-        Collections.sort(list);
+        Collections.sort(list, comparator);
+
+        // Collections.sort(list);
 
         System.out.println(list);
     }

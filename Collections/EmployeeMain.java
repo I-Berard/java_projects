@@ -133,6 +133,9 @@ public class EmployeeMain {
         set.add(emp1);
         set.add(emp2);
 
+        System.out.println(emp1.hashCode());
+        System.out.println(emp2.hashCode());
+
         System.out.println(emp1.equals(emp2));
         System.out.println(set.size());
 
