@@ -31,6 +31,11 @@ public class Exercises {
         return isHexColorCode;
     }
 
+    public static boolean isIp(String string){
+        boolean isIp = Pattern.compile("^([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])$").matcher(string).matches();
+        return isIp;
+    }
+
     public static void main(String[] args) {
         System.out.println(isLowerCase("hello"));
         System.out.println(isThreeDigits("234"));
@@ -41,5 +46,6 @@ public class Exercises {
         System.out.println(isPhoneNumber("123 456 7890"));
         System.out.println(isPhoneNumber("123.456.7890"));
         System.out.println(isHexColorCode("#FFF"));
+        System.out.println(isIp("34.34.34.34"));
     }
 }
