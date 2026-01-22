@@ -65,7 +65,7 @@ public class MultiplierMain {
         t1.start();
 
         t1.join();
-        t2.join();
+        t2.join(); //Waiting for both the threads to finish execution so that we can use what they've changed
 
         System.out.println(counter.count);
     }

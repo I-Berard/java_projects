@@ -28,7 +28,7 @@ public class ExecutorFrameWork {
         // Future<Integer> future2 = executor.submit(new task(5));
         // Future<Integer> future3 = executor.submit(new task(6));
 
-        System.out.println(future1.get());
+        System.out.println(future1.get()); 
         // System.out.println(future2.get());
         // System.out.println(future3.get());
 

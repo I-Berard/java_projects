@@ -14,6 +14,7 @@ public class DuplicateJava {
                 duplicate.add(num);
             }
         }
+        // duplicate.set(0, null);
 
         System.out.println(duplicate);
 
