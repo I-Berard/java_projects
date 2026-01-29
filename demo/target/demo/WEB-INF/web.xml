@@ -6,11 +6,31 @@
   <display-name>Archetype Created Web Application</display-name>
     <servlet>
         <servlet-name>sum</servlet-name>
-        <servlet-class>SumServlet</servlet-class>
+        <servlet-class>com.berard.servlet.SumServlet</servlet-class>
+          <init-param>
+            <param-name>ServletDescription</param-name>
+            <param-value>Add numbers</param-value>
+          </init-param>
     </servlet>
+
+    
 
     <servlet-mapping>
         <servlet-name>sum</servlet-name>
         <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+    <context-param>
+      <param-name>appName</param-name>
+      <param-value>Calculator</param-value>
+    </context-param>
+
+    <servlet>
+      <servlet-name>output</servlet-name>
+      <servlet-class>com.berard.servlet.DisplayResultService</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>output</servlet-name>
+      <url-pattern>display</url-pattern>
     </servlet-mapping>
 </web-app>

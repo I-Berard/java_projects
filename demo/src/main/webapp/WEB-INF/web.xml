@@ -4,21 +4,56 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-    <servlet>
-        <servlet-name>sum</servlet-name>
-        <servlet-class>com.berard.servlet.SumServlet</servlet-class>
-          <init-param>
-            <param-name>ServletDescription</param-name>
-            <param-value>Add numbers</param-value>
-          </init-param>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>sum</servlet-name>
-        <url-pattern>/add</url-pattern>
-    </servlet-mapping>
-    <context-param>
+     <context-param>
       <param-name>appName</param-name>
       <param-value>Calculator</param-value>
-    </context-param>
+  </context-param>
+  <servlet>
+    <servlet-name>redirect</servlet-name>
+    <servlet-class>com.berard.servlet.RedirectServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>redirect</servlet-name>
+    <url-pattern>/redirect</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>add</servlet-name>
+    <servlet-class>com.berard.servlet.AddServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>add</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>subtract</servlet-name>
+    <servlet-class>com.berard.servlet.SubtractServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>subtract</servlet-name>
+    <url-pattern>/subtract</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>multiply</servlet-name>
+    <servlet-class>com.berard.servlet.MultiplyServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>multiply</servlet-name>
+    <url-pattern>/multiply</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>display</servlet-name>
+    <servlet-class>com.berard.servlet.DisplayServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>display</servlet-name>
+    <url-pattern>/display</url-pattern>
+  </servlet-mapping>
 </web-app>
