@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 // @WebServlet("/redirect")
 public class RedirectServlet extends HttpServlet {
@@ -38,8 +39,9 @@ public class RedirectServlet extends HttpServlet {
             // RequestDispatcher rd = req.getRequestDispatcher(req.getParameter("operation"));
             // rd.forward(req, res);
 
-            req.setAttribute("fnum", num1);
-            req.setAttribute("snum", num2);
+            HttpSession session = req.getSession();
+            session.setAttribute("fnum", num1);
+            session.setAttribute("snum", num2);
 
             String operation = req.getParameter("operation");
             if("add".equals(operation)){
