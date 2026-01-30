@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 // import javax.servlet.ServletConfig;
 // import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 // import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,8 +46,11 @@ public class RedirectServlet extends HttpServlet {
 
             String operation = req.getParameter("operation");
             if("add".equals(operation)){
-                RequestDispatcher rd = req.getRequestDispatcher("add");
-                rd.forward(req, res);
+                Cookie firstNumber = new Cookie("firstnum", num1+"");
+                Cookie secondNumber = new Cookie("secondnum", num2+"");
+                res.addCookie(firstNumber);
+                res.addCookie(secondNumber);
+                res.sendRedirect("add");
             }else if("subtract".equals(operation)){
                 RequestDispatcher rd = req.getRequestDispatcher("subtract");
                 rd.forward(req, res);
@@ -57,6 +61,7 @@ public class RedirectServlet extends HttpServlet {
             
         }catch(Exception e){
             res.getWriter().println("Invalid input");
+            e.printStackTrace();
         }
     }
 }
