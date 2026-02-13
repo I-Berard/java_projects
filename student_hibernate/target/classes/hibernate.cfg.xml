@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Database connection settings -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/java_db</property>
+        <property name="hibernate.connection.username">javauser</property>
+        <property name="hibernate.connection.password">java@123</property>
+
+        <!-- SQL dialect for PostgreSQL -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- Show SQL in console -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Automatically create or update tables -->
+        <!-- Options: validate | update | create | create-drop -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Optional: Enable second-level cache -->
+        <!-- <property name="hibernate.cache.use_second_level_cache">true</property> -->
+        <!-- <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property> -->
+
+        <!-- Mapped entity classes -->
+        <mapping class="model.Student"/> <!--remember to change-->
+        <!-- Add more <mapping class="com.example.model.OtherEntity"/> as needed -->
+
+    </session-factory>
+</hibernate-configuration>
