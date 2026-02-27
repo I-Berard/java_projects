@@ -1,6 +1,13 @@
 controllers/RegisterStudent.class
+models/Student.class
+model/Students.class
 util/HibernateUtil.class
 controllers/StudentController.class
+model/Computer.class
 dao/StudentDAO.class
+dao/ComputerDAO.class
 model/Student.class
-model/Students.class
+models/Employee.class
+models/Person.class
+service/StudentService.class
+model/UpdateComputerDTO.class

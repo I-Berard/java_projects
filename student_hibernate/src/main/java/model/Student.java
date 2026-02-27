@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Student {
     private String studentlastname;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Computer> computers;
+    private List<Computer> computers = new ArrayList<>();
 
     public void addComputer(Computer computer){
         computers.add(computer);

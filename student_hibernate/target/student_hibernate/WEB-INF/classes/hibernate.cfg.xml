@@ -27,7 +27,11 @@
         <!-- <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property> -->
 
         <!-- Mapped entity classes -->
-        <mapping class="model.Student"/> <!--remember to change-->
+        <!-- <mapping class="model.Student"/> &lt;!&ndash;remember to change&ndash;&gt;-->
+        <!-- <mapping class="model.Computer"/>-->
+        <mapping class="models.Person"/>
+        <mapping class="models.Student"/>
+        <mapping class="models.Employee"/>
         <!-- Add more <mapping class="com.example.model.OtherEntity"/> as needed -->
 
     </session-factory>

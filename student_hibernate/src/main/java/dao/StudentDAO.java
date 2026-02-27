@@ -4,10 +4,10 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Computer;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import model.Computer;
 import model.Student;
 import util.HibernateUtil;
 

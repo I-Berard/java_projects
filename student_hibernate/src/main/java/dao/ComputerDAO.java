@@ -46,7 +46,7 @@ public class ComputerDAO {
                     if(student != null){
                         computer1.setStudent(student);
                     }else {
-                        throw new RuntimeException("Student with student id " + computer.getStudent() + " does not exist" );
+                        throw new RuntimeException("Student with student id " + computer.getStudent() + " does not exist");
                     }
                 }
                 if(computer.getBrand() != null){

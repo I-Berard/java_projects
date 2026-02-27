@@ -8,23 +8,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.StudentDAO;
+import model.Computer;
 import model.Student;
+import service.StudentService;
 
-@WebServlet("/register")
+@WebServlet("/student/*")
 public class RegisterStudent extends HttpServlet{
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException{
-        String studentfirstname = req.getParameter("studentfirstname");
-        String studentlastname = req.getParameter("studentlastname");
-        int id = Integer.parseInt(req.getParameter("id"));
+        String firstname = req.getParameter("firstName");
+        String lastname = req.getParameter("lastName");
+//        String schoolName = req.getParameter("schoolName");
+//        String academicYear = req.getParameter("academicYear");
+        String computerBrand = req.getParameter("computerBrand");
+        String computerVersion = req.getParameter("computerVersion");
 
-        if(studentfirstname == null || studentlastname == null){
-            System.out.println("make sure that all things are provided");
-            return;
-        }
+        Student student = new Student();
+        student.setStudentfirstname(firstname);
+        student.setStudentlastname(lastname);
+        Computer computer = new Computer();
+        computer.setVersion(computerVersion);
+        computer.setBrand(computerBrand);
 
-        Student newStudent = new Student(id, studentfirstname, studentlastname);
-        StudentDAO.save(newStudent);
-        res.sendRedirect("register.jsp?success=true");
+        StudentDAO.saveWithComputer(student, computer);
+        System.out.printf("Saved student");
     }
 }

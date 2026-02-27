@@ -1,6 +1,13 @@
+/home/berard/disk2/java Projects/student_hibernate/src/main/java/model/Student.java
+/home/berard/disk2/java Projects/student_hibernate/src/main/java/model/UpdateComputerDTO.java
+/home/berard/disk2/java Projects/student_hibernate/src/main/java/models/Student.java
+/home/berard/disk2/java Projects/student_hibernate/src/main/java/dao/StudentDAO.java
+/home/berard/disk2/java Projects/student_hibernate/src/main/java/model/Computer.java
+/home/berard/disk2/java Projects/student_hibernate/src/main/java/dao/ComputerDAO.java
 /home/berard/disk2/java Projects/student_hibernate/src/main/java/model/Students.java
 /home/berard/disk2/java Projects/student_hibernate/src/main/java/util/HibernateUtil.java
-/home/berard/disk2/java Projects/student_hibernate/src/main/java/model/Student.java
+/home/berard/disk2/java Projects/student_hibernate/src/main/java/service/StudentService.java
 /home/berard/disk2/java Projects/student_hibernate/src/main/java/controllers/RegisterStudent.java
-/home/berard/disk2/java Projects/student_hibernate/src/main/java/dao/StudentDAO.java
+/home/berard/disk2/java Projects/student_hibernate/src/main/java/models/Employee.java
+/home/berard/disk2/java Projects/student_hibernate/src/main/java/models/Person.java
 /home/berard/disk2/java Projects/student_hibernate/src/main/java/controllers/StudentController.java
