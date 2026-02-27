@@ -26,6 +26,5 @@ public class PatientRegister extends HttpServlet{
         Patient patient = new Patient(firstName, lastName, email);
         PatientDAO.save(patient);
         res.sendRedirect("index.jsp?success=true");
-
     }
 }

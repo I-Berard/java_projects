@@ -1,11 +1,7 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "studentsjava")
@@ -19,6 +15,22 @@ public class Student {
 
     @Column(nullable=false)
     private String studentlastname;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Computer> computers;
+
+    public void addComputer(Computer computer){
+        computers.add(computer);
+        computer.setStudent(this);
+    }
+
+    public List<Computer> getComputers() {
+        return computers;
+    }
+
+    public void setComputers(List<Computer> computers) {
+        this.computers = computers;
+    }
 
     public Student() {
     }

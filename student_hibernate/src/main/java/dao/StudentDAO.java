@@ -4,7 +4,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Hibernate;
+import model.Computer;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -17,12 +17,29 @@ public class StudentDAO {
         try(Session session = HibernateUtil.getSesssionFactory().openSession()){
             tx = session.beginTransaction();
             session.save(student);
+            // session.persist(student);
             tx.commit();
         }catch(Exception e){
             if (tx != null) tx.rollback();
             e.printStackTrace();
         }
     }
+
+    public static void saveWithComputer(Student student, Computer computer){
+        Transaction tx = null;
+        try(Session session = HibernateUtil.getSesssionFactory().openSession()){
+            tx = session.beginTransaction();
+            student.addComputer(computer);
+            session.save(student);
+            // session.persist(student);
+            tx.commit();
+        }catch(Exception e){
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        }
+    }
+
+
 
     public static void update(Student patient){
         Transaction tx = null;

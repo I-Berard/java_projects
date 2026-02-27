@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-   <p> Result: <%= request.getAttribute("result")%> </p>
+   <p> Result: <%= request.getAttribute("res")%> </p>
 </body>
 </html>

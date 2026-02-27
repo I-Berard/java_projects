@@ -1,3 +1,4 @@
+controllers/ViewPatients.class
 util/HibernateUtil.class
 controllers/PatientRegister.class
 dao/PatientDAO.class

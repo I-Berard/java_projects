@@ -10,11 +10,11 @@ public class dbUtil {
     public static final String PASSWORD = "java@123";
 
     public static Connection getConnection() throws SQLException{
-        // try{
-        //     Class.forName("org.postgresql.Driver");
-        // } catch (ClassNotFoundException ex) {
-        //     System.getLogger(dbUtil.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        // }
+        try{
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.getLogger(dbUtil.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 }

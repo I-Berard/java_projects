@@ -62,6 +62,7 @@ public class RedirectServlet extends HttpServlet {
         }catch(Exception e){
             res.getWriter().println("Invalid input");
             e.printStackTrace();
+            e.getMessage();
         }
     }
 }
