@@ -1,0 +1,7 @@
+com/watchtower/models/UserUpdateDTO.class
+com/watchtower/dao/IncidentDAO.class
+com/watchtower/controllers/UsersController.class
+com/watchtower/models/Incident.class
+com/watchtower/dao/UserDAO.class
+com/watchtower/utils/HibernateUtil.class
+com/watchtower/models/User.class

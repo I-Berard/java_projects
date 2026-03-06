@@ -1,0 +1,7 @@
+/home/berard/disk2/java Projects/watchtower/src/main/java/com/watchtower/controllers/UsersController.java
+/home/berard/disk2/java Projects/watchtower/src/main/java/com/watchtower/models/UserUpdateDTO.java
+/home/berard/disk2/java Projects/watchtower/src/main/java/com/watchtower/utils/HibernateUtil.java
+/home/berard/disk2/java Projects/watchtower/src/main/java/com/watchtower/dao/IncidentDAO.java
+/home/berard/disk2/java Projects/watchtower/src/main/java/com/watchtower/models/User.java
+/home/berard/disk2/java Projects/watchtower/src/main/java/com/watchtower/dao/UserDAO.java
+/home/berard/disk2/java Projects/watchtower/src/main/java/com/watchtower/models/Incident.java
