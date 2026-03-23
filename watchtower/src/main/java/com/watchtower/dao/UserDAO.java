@@ -3,6 +3,7 @@ package com.watchtower.dao;
 import com.watchtower.models.Incident;
 import com.watchtower.models.User;
 import com.watchtower.utils.HibernateUtil;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -41,6 +42,9 @@ public class UserDAO {
         User user = null;
         try(Session session = getSession()){
             user = (User) session.createQuery("FROM User u WHERE u.email = :email", User.class).setParameter("email", email).uniqueResult();
+            if(user != null){
+                Hibernate.initialize(user.getIncidents());
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -51,6 +55,9 @@ public class UserDAO {
         User user = null;
         try(Session session = getSession()){
             user = (User) session.createQuery("FROM User u WHERE u.username = :username", User.class).setParameter("username", username).uniqueResult();
+            if(user != null){
+                Hibernate.initialize(user.getIncidents());
+            }
         }catch (Exception e){
             e.printStackTrace();
         }

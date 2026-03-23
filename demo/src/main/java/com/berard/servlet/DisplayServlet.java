@@ -19,9 +19,10 @@ public class DisplayServlet extends HttpServlet{
         
         int results = (int)session.getAttribute("result");
         String operation = (String)session.getAttribute("operation");
+        String path = (String) session.getAttribute("path");
         
         res.setContentType("text/html");
-        out.println("<main style=\"padding:80px 20px 60px 20px;\"> The results of " + operation + " is " + results + "</main>");
+        out.println("<main style=\"padding:80px 20px 60px 20px;\"> The results of " + operation + " " + path + " is " + results + "</main>");
         
         req.getRequestDispatcher("/footer").include(req, res);
 

@@ -19,15 +19,10 @@ class CallableTask implements Callable<String>{
 		// TODO Auto-generated method stub
 		Thread.sleep(1000);
 		return "the message is :"+ message;
-	}
-	
+	}	
 }
 
-
-
-
 public class CallableClass {
-
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		ExecutorService exxecutorService=Executors.newFixedThreadPool(1);

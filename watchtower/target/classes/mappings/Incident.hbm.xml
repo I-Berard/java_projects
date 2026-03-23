@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.watchtower.models">
+    <class name="com.watchtower.models.Incident" table="incidents">
+        <id name="id" column="id" type="string">
+            <generator class="org.hibernate.id.UUIDGenerator"></generator>
+        </id>
+        <property name="title" column="title" type="string" not-null="true"/>
+        <property name="description" column="description" not-null="true" type="string"/>
+        <property name="severity" type="string" column="severity" not-null="true"/>
+        <property name="status" type="string" column="status" not-null="true"/>
+        <property name="created_at" type="timestamp" column="created_at"/>
+        <many-to-one name="user" class="com.watchtower.models.User" column="user_id" not-null="false" />
+    </class>
+</hibernate-mapping>

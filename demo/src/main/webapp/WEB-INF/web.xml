@@ -8,7 +8,7 @@
       <param-name>appName</param-name>
       <param-value>Calculator</param-value>
   </context-param>
-  <servlet>
+  <!-- <servlet>
     <servlet-name>redirect</servlet-name>
     <servlet-class>com.berard.servlet.RedirectServlet</servlet-class>
   </servlet>
@@ -16,7 +16,7 @@
   <servlet-mapping>
     <servlet-name>redirect</servlet-name>
     <url-pattern>/redirect</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 
   <servlet>
     <servlet-name>add</servlet-name>

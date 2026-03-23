@@ -1,20 +1,17 @@
 package com.berard.servlet;
 
 import java.io.IOException;
-// import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
-// import javax.servlet.ServletConfig;
-// import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
-// import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-// @WebServlet("/redirect")
+@WebServlet("/redirect/hello")
 public class RedirectServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         try{
@@ -40,9 +37,11 @@ public class RedirectServlet extends HttpServlet {
             // RequestDispatcher rd = req.getRequestDispatcher(req.getParameter("operation"));
             // rd.forward(req, res);
 
+            String path = req.getPathInfo();
             HttpSession session = req.getSession();
             session.setAttribute("fnum", num1);
             session.setAttribute("snum", num2);
+            session.setAttribute("path", path);
 
             String operation = req.getParameter("operation");
             if("add".equals(operation)){

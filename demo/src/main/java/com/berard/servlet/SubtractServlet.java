@@ -15,11 +15,13 @@ public class SubtractServlet extends HttpServlet{
         HttpSession session = req.getSession();
         int num1 = (int)session.getAttribute("fnum");
         int num2 = (int)session.getAttribute("snum");
+        String path = (String) session.getAttribute("path");
 
         int difference = num1 - num2;
         HttpSession session2 = req.getSession();
         session2.setAttribute("result", difference);
         session2.setAttribute("operation", "subtraction");
+        session2.setAttribute("path", path);
         req.getRequestDispatcher("display").forward(req, res);
     }
 }

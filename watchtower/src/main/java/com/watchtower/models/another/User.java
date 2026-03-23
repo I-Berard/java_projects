@@ -1,4 +1,4 @@
-package com.watchtower.models;
+package com.watchtower.models.another;
 
 import org.hibernate.annotations.GenericGenerator;
 

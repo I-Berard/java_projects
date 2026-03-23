@@ -1,36 +1,29 @@
 package com.watchtower.models;
 
-import com.watchtower.models.another.Incident;
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-@Entity(name = "User")
-@Table(name = "users")
+
 public class User {
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+
     private String id;
 
-    @Column(nullable = false, unique = true)
     private String username;
 
     private String firstName;
 
     private String lastName;
 
-    @Column(nullable = false, unique = true)
     private String email;
 
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<com.watchtower.models.another.Incident> incidents = new ArrayList<>();
+    private Set<Incident> incidents = new HashSet<>();
 
-    public User(String id, String username, String firstName, String lastName, String email, String password, List<com.watchtower.models.another.Incident> incidents) {
+    public User(String id, String username, String firstName, String lastName, String email, String password, Set<Incident> incidents) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -43,7 +36,7 @@ public class User {
     public User() {
     }
 
-    public void addIncident(com.watchtower.models.another.Incident incident){
+    public void addIncident(Incident incident){
         incidents.add(incident);
         incident.setUser(this);
     }
@@ -96,11 +89,11 @@ public class User {
         this.password = password;
     }
 
-    public List<com.watchtower.models.another.Incident> getIncidents() {
+    public Set<Incident> getIncidents() {
         return incidents;
     }
 
-    public void setIncidents(List<Incident> incidents) {
+    public void setIncidents(Set<Incident> incidents) {
         this.incidents = incidents;
     }
 

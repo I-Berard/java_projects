@@ -1,11 +1,6 @@
 package com.watchtower.utils;
 
-import com.watchtower.models.User;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

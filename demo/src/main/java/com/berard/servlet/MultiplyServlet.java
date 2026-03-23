@@ -1,11 +1,9 @@
 package com.berard.servlet;
 
 import java.io.IOException;
-// import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-// import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,11 +14,13 @@ public class MultiplyServlet extends HttpServlet{
         HttpSession session = req.getSession();
         int num1 = (int)session.getAttribute("fnum");
         int num2 = (int)session.getAttribute("snum");
+        String path = (String) session.getAttribute("path");
 
         int product = num1 * num2;
         HttpSession session2 = req.getSession();
         session2.setAttribute("result", product);
         session2.setAttribute("operation", "multiplication");
+        session2.setAttribute("path", path);
         req.getRequestDispatcher("display").forward(req, res);
     }
 }

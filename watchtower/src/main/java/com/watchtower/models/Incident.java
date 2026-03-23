@@ -1,37 +1,15 @@
 package com.watchtower.models;
 
-import com.watchtower.models.another.User;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity(name = "Incident")
-@Table(name = "incidents")
 public class Incident {
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+
     private String id;
-
-    @Column(nullable = false)
     private String title;
-
-    @Column(nullable = false)
     private String description;
-
-    @Column(nullable = false)
     private String severity;
-
-    @Column(nullable = false)
     private String status;
-
-    @CreationTimestamp
     private LocalDateTime created_at = LocalDateTime.now();
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
     public User getUser() {

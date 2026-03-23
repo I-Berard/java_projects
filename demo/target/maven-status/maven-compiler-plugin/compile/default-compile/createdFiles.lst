@@ -1,2 +1,8 @@
-com/berard/servlet/DisplayResultService.class
-com/berard/servlet/SumServlet.class
+com/berard/servlet/PositiveNumbers.class
+com/berard/servlet/SubtractServlet.class
+com/berard/servlet/MultiplyServlet.class
+com/berard/servlet/DisplayServlet.class
+com/berard/servlet/Header.class
+com/berard/servlet/AddServlet.class
+com/berard/servlet/Footer.class
+com/berard/servlet/RedirectServlet.class

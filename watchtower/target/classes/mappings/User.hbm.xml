@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.watchtower.models">
+    <class name="com.watchtower.models.User" table="users">
+        <id name="id" column="id" type="string">
+            <generator class="org.hibernate.id.UUIDGenerator" />
+        </id>
+
+        <property name="username" column="username" type="string" unique="true" not-null="true"/>
+        <property name="firstName" column="firstName" type="string" unique="false" not-null="true" />
+        <property name="lastName" column="lastName" type="string" not-null="true"/>
+        <property name="email" column="email" unique="true" not-null="true" type="string"/>
+        <property name="password" column="password" not-null="true" type="string" />
+        
+        <set name="incidents" table="incidents" cascade="all" inverse="true" lazy="true">
+            <key column="user_id" />
+            <one-to-many class="com.watchtower.models.Incident"/>
+        </set>
+    </class>
+</hibernate-mapping>

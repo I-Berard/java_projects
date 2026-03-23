@@ -3,7 +3,7 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.watchtower.models">
-    <class name="Incident" table="incidents">
+    <class name="com.watchtower.models.Incident" table="incidents">
         <id name="id" column="id" type="string">
             <generator class="org.hibernate.id.UUIDGenerator"></generator>
         </id>
@@ -12,6 +12,6 @@
         <property name="severity" type="string" column="severity" not-null="true"/>
         <property name="status" type="string" column="status" not-null="true"/>
         <property name="created_at" type="timestamp" column="created_at"/>
-        <many-to-one name="user" class="User" column="user_id" not-null="false" />
+        <many-to-one name="user" class="com.watchtower.models.User" column="user_id" not-null="false" />
     </class>
 </hibernate-mapping>

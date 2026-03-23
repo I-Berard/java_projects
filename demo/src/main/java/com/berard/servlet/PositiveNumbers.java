@@ -24,7 +24,7 @@ public class PositiveNumbers implements Filter{
             response.sendRedirect(request.getContextPath());
             return;
         }
-
+        System.out.println(request.getPathInfo());
         chain.doFilter(request, response);
     }
 }

@@ -20,8 +20,10 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Mapping classes -->
-        <mapping class="com.watchtower.models.User"/>
-        <mapping class="com.watchtower.models.Incident"/>
+        <!--<mapping class="com.watchtower.models.another.User"/>-->
+        <!--<mapping class="com.watchtower.models.another.Incident"/>-->
+        <mapping resource="mappings/Incident.hbm.xml"/>
+        <mapping resource="mappings/User.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

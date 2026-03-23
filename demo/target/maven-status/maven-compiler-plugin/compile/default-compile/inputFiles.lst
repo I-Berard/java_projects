@@ -1,2 +1,8 @@
-/home/berard/disk2/java Projects/demo/src/main/java/com/berard/servlet/DisplayResultService.java
-/home/berard/disk2/java Projects/demo/src/main/java/com/berard/servlet/SumServlet.java
+/home/berard/disk2/java Projects/demo/src/main/java/com/berard/servlet/AddServlet.java
+/home/berard/disk2/java Projects/demo/src/main/java/com/berard/servlet/DisplayServlet.java
+/home/berard/disk2/java Projects/demo/src/main/java/com/berard/servlet/Footer.java
+/home/berard/disk2/java Projects/demo/src/main/java/com/berard/servlet/Header.java
+/home/berard/disk2/java Projects/demo/src/main/java/com/berard/servlet/MultiplyServlet.java
+/home/berard/disk2/java Projects/demo/src/main/java/com/berard/servlet/PositiveNumbers.java
+/home/berard/disk2/java Projects/demo/src/main/java/com/berard/servlet/RedirectServlet.java
+/home/berard/disk2/java Projects/demo/src/main/java/com/berard/servlet/SubtractServlet.java
