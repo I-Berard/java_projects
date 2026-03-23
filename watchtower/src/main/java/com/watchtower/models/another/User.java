@@ -1,6 +1,5 @@
 package com.watchtower.models;
 
-import com.watchtower.models.another.Incident;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -28,9 +27,9 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<com.watchtower.models.another.Incident> incidents = new ArrayList<>();
+    private List<Incident> incidents = new ArrayList<>();
 
-    public User(String id, String username, String firstName, String lastName, String email, String password, List<com.watchtower.models.another.Incident> incidents) {
+    public User(String id, String username, String firstName, String lastName, String email, String password, List<Incident> incidents) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -43,7 +42,7 @@ public class User {
     public User() {
     }
 
-    public void addIncident(com.watchtower.models.another.Incident incident){
+    public void addIncident(Incident incident){
         incidents.add(incident);
         incident.setUser(this);
     }
@@ -96,7 +95,7 @@ public class User {
         this.password = password;
     }
 
-    public List<com.watchtower.models.another.Incident> getIncidents() {
+    public List<Incident> getIncidents() {
         return incidents;
     }
 

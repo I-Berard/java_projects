@@ -1,6 +1,5 @@
 package com.watchtower.models;
 
-import com.watchtower.models.another.User;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 

@@ -14,7 +14,6 @@ import models.Student;
 @WebServlet("/register")
 public class Register extends HttpServlet{
     @Override
-    @SuppressWarnings("CallToPrintStackTrace")
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
         String id = req.getParameter("id");
         String studentFirstName = req.getParameter("studentFirstName");
