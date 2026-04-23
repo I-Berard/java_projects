@@ -38,7 +38,7 @@
                             <div class="user-tag">
                                 <span style="font-weight: 500;">${user.firstName} ${user.lastName}</span>
                                 <div class="avatar"></div>
-                                <a href="${pageContext.request.contextPath}/logout.jsp"
+                                <a href="${pageContext.request.contextPath}/users/logout"
                                     style="font-size: 0.8rem; color: var(--text-secondary);">Logout</a>
                             </div>
                         </header>

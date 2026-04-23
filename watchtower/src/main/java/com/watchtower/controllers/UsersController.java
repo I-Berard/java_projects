@@ -2,6 +2,7 @@ package com.watchtower.controllers;
 
 import com.watchtower.dao.UserDAO;
 import com.watchtower.models.User;
+import org.hibernate.SessionException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,11 +48,11 @@ public class UsersController extends HttpServlet {
                 throw new IOException(e);
             }
         }
-        if("/login".equals(req.getPathInfo())){
+        if("/login".equals(req.getPathInfo())) {
             String userNameOrEmail = req.getParameter("userNameOrEmail");
             String password = req.getParameter("password");
 
-            if(userNameOrEmail == null || password == null || userNameOrEmail.isEmpty() || password.isEmpty()){
+            if (userNameOrEmail == null || password == null || userNameOrEmail.isEmpty() || password.isEmpty()) {
                 req.setAttribute("errorMessage", "Username or email and password are required");
                 try {
                     req.getRequestDispatcher("/login.jsp").forward(req, res);
@@ -62,13 +63,13 @@ public class UsersController extends HttpServlet {
             }
 
             User user = null;
-            if (userNameOrEmail.contains("@")){
+            if (userNameOrEmail.contains("@")) {
                 user = UserDAO.findByEmail(userNameOrEmail);
-            }else{
+            } else {
                 user = UserDAO.findByUsername(userNameOrEmail);
             }
 
-            if(user == null){
+            if (user == null) {
                 req.setAttribute("errorMessage", "User does not exist, try registering first");
                 try {
                     req.getRequestDispatcher("/login.jsp").forward(req, res);
@@ -78,7 +79,7 @@ public class UsersController extends HttpServlet {
                 return;
             }
 
-            if(password.equals(user.getPassword())){
+            if (password.equals(user.getPassword())) {
                 HttpSession session = req.getSession();
                 session.setAttribute("user", user);
                 res.sendRedirect(req.getContextPath() + "/index.jsp");
@@ -90,6 +91,17 @@ public class UsersController extends HttpServlet {
                     throw new IOException(e);
                 }
             }
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, SessionException {
+        if("/logout".equals(req.getPathInfo())){
+            HttpSession session = req.getSession(false);
+            if (session != null){
+                session.invalidate();
+            }
+            res.sendRedirect(req.getContextPath() + "/" + "login.jsp");
         }
     }
 }

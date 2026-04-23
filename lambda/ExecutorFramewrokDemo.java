@@ -78,6 +78,9 @@ public class ExecutorFramewrokDemo {
 			executor.execute(new Task(i));
 		}
 		executor.shutdown();
+		Thread th1 = new Thread(() -> {
+
+		});
 		/*
 		 * for(int i=0;i<5;i++) { System.out.println("main values :"+i); }
 		 */

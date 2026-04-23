@@ -36,6 +36,11 @@ public class Exercises {
         return isIp;
     }
 
+    public static boolean isIPDavid(String string){
+        boolean isIPDavid = Pattern.compile("([0-9]{1,3}\\.){3}[0-9]{1,3}").matcher(string).matches();
+        return isIPDavid;
+    }
+
     public static void main(String[] args) {
         System.out.println(isLowerCase("hello"));
         System.out.println(isThreeDigits("234"));
@@ -47,5 +52,6 @@ public class Exercises {
         System.out.println(isPhoneNumber("123.456.7890"));
         System.out.println(isHexColorCode("#FFF"));
         System.out.println(isIp("34.34.34.34"));
+        System.out.println(isIp("00.0.0.0"));
     }
 }
