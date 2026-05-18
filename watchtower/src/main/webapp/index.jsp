@@ -21,9 +21,8 @@
                             <h1>Secure your future with Watchtower</h1>
                             <p>The all-in-one platform for monitoring and managing your digital security assets.</p>
                             <div class="auth-buttons">
-                                <a href="${pageContext.request.contextPath}/login.jsp" class="btn btn-primary">Log
-                                    In</a>
-                                <a href="${pageContext.request.contextPath}/signup.jsp" class="btn btn-secondary">Sign
+                                <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">Log In</a>
+                                <a href="${pageContext.request.contextPath}/signup" class="btn btn-secondary">Sign
                                     Up</a>
                             </div>
                         </section>
@@ -37,74 +36,54 @@
                             </div>
                             <div class="user-tag">
                                 <span style="font-weight: 500;">${user.firstName} ${user.lastName}</span>
-                                <div class="avatar"></div>
+                                <a href="${pageContext.request.contextPath}/profile">
+                                    <div class="avatar"></div>
+                                </a>
                                 <a href="${pageContext.request.contextPath}/users/logout"
                                     style="font-size: 0.8rem; color: var(--text-secondary);">Logout</a>
                             </div>
                         </header>
 
-                        <div class="dashboard-grid">
-                            <!-- Sales Statistics Card (Dark) -->
-                            <div class="card card-dark span-8">
-                                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                                    <div>
-                                        <h3 class="stat-label">System Monitoring</h3>
-                                        <div class="stat-value">Active Incidents: ${user.incidents.size()}</div>
-                                    </div>
-                                    <div style="font-size: 0.8rem; opacity: 0.6;">Real-time Update</div>
-                                </div>
-                                <div class="chart-mockup">
-                                    <div class="bar" style="height: 40%;"></div>
-                                    <div class="bar" style="height: 60%;"></div>
-                                    <div class="bar bar-active" style="height: 85%;"></div>
-                                    <div class="bar" style="height: 45%;"></div>
-                                    <div class="bar bar-active" style="height: 95%;"></div>
-                                    <div class="bar" style="height: 70%;"></div>
-                                </div>
+                        <div class="blog-feed" style="max-width: 800px; margin: 2rem auto;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                                <h2 style="margin: 0;">Incident Reports</h2>
+                                <a href="${pageContext.request.contextPath}/incidents/new" class="btn btn-primary"
+                                    style="padding: 0.5rem 1rem; font-size: 0.9rem;">+ Report Incident</a>
                             </div>
-
-                            <!-- Market Forecast (Light) -->
-                            <div class="card span-4">
-                                <h3 class="stat-label">Security Score</h3>
-                                <div class="stat-value">92%</div>
-                                <p style="color: var(--text-secondary); font-size: 0.9rem;">Your security posture is
-                                    excellent. 3 recommendations pending.</p>
-                                <div
-                                    style="margin-top: 2rem; background: var(--bg-primary); height: 8px; border-radius: 4px; overflow: hidden;">
-                                    <div style="width: 92%; height: 100%; background: var(--accent-green);"></div>
-                                </div>
-                            </div>
-
-                            <!-- Current Balance (Mint) -->
-                            <div class="card card-mint span-6">
-                                <h3 class="stat-label">Available Credits</h3>
-                                <div class="stat-value">1,420 WT</div>
-                                <div style="margin-top: auto; display: flex; align-items: center; gap: 0.5rem;">
-                                    <span style="font-size: 0.8rem; font-weight: 600; color: #065f46;">+12.5% from last
-                                        month</span>
-                                </div>
-                            </div>
-
-                            <!-- Recent Transactions (Purple) -->
-                            <div class="card card-purple span-6">
-                                <h3 class="stat-label">Recent Activity</h3>
-                                <div style="margin-top: 1rem;">
+                            <c:forEach var="incident" items="${incidents}">
+                                <div class="card incident-card" style="margin-bottom: 1.5rem; padding: 1.5rem;">
                                     <div
-                                        style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.05);">
-                                        <span style="font-size: 0.9rem;">New Login (NYC)</span>
-                                        <span style="font-size: 0.8rem; color: var(--text-secondary);">2m ago</span>
+                                        style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                                        <h3 style="margin: 0; font-size: 1.25rem;">
+                                            <c:out value="${incident.title}" />
+                                        </h3>
+                                        <span
+                                            style="padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; 
+                                                     background: ${incident.severity == 'Critical' || incident.severity == 'High' ? 'rgba(220, 38, 38, 0.1)' : 'rgba(245, 158, 11, 0.1)'};
+                                                     color: ${incident.severity == 'Critical' || incident.severity == 'High' ? '#dc2626' : '#d97706'};">
+                                            <c:out value="${incident.severity}" />
+                                        </span>
                                     </div>
+                                    <p style="color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.6;">
+                                        <c:out value="${incident.description}" />
+                                    </p>
                                     <div
-                                        style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.05);">
-                                        <span style="font-size: 0.9rem;">Password Updated</span>
-                                        <span style="font-size: 0.8rem; color: var(--text-secondary);">1h ago</span>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
-                                        <span style="font-size: 0.9rem;">API Key Generated</span>
-                                        <span style="font-size: 0.8rem; color: var(--text-secondary);">3h ago</span>
+                                        style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1rem;">
+                                        <span>Status: <strong style="color: var(--text-primary);">
+                                                <c:out value="${incident.status}" />
+                                            </strong></span>
+                                        <span>Reported:
+                                            <c:out value="${incident.created_at}" />
+                                        </span>
                                     </div>
                                 </div>
-                            </div>
+                            </c:forEach>
+                            <c:if test="${empty incidents}">
+                                <div class="card" style="text-align: center; padding: 3rem;">
+                                    <p style="color: var(--text-secondary);">No incidents reported yet.</p>
+                                </div>
+                            </c:if>
                         </div>
                     </c:otherwise>
                 </c:choose>

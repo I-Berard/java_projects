@@ -5,6 +5,7 @@
 
 <hibernate-mapping package="com.watchtower.models">
     <class name="com.watchtower.models.User" table="users">
+        <cache usage="read-write"/>
         <id name="id" column="id" type="string">
             <generator class="org.hibernate.id.UUIDGenerator" />
         </id>

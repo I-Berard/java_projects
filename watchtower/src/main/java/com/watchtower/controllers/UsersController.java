@@ -82,7 +82,7 @@ public class UsersController extends HttpServlet {
             if (password.equals(user.getPassword())) {
                 HttpSession session = req.getSession();
                 session.setAttribute("user", user);
-                res.sendRedirect(req.getContextPath() + "/index.jsp");
+                res.sendRedirect(req.getContextPath() + "/dashboard");
             } else {
                 req.setAttribute("errorMessage", "Invalid password");
                 try {
@@ -101,7 +101,7 @@ public class UsersController extends HttpServlet {
             if (session != null){
                 session.invalidate();
             }
-            res.sendRedirect(req.getContextPath() + "/" + "login.jsp");
+            res.sendRedirect(req.getContextPath() + "/login");
         }
     }
 }

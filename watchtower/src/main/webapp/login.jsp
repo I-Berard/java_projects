@@ -46,7 +46,7 @@
                     </form>
 
                     <div class="footer-link">
-                        Don't have an account? <a href="${pageContext.request.contextPath}/signup.jsp">Sign Up</a>
+                        Don't have an account? <a href="${pageContext.request.contextPath}/signup">Sign Up</a>
                     </div>
                 </div>
             </div>
