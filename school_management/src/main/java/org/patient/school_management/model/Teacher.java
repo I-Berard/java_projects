@@ -2,11 +2,10 @@ package org.patient.school_management.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class Student {
+public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -17,18 +16,9 @@ public class Student {
 
     private String fullName;
 
-    private String admissionNumber;
+    private String employeeNumber;
 
-    @OneToMany(mappedBy = "student")
-    private List<Enrollment> enrollments;
-
-    public List<Enrollment> getEnrollments() {
-        return enrollments;
-    }
-
-    public void setEnrollments(List<Enrollment> enrollments) {
-        this.enrollments = enrollments;
-    }
+    private String department;
 
     public UUID getId() {
         return id;
@@ -54,11 +44,19 @@ public class Student {
         this.fullName = fullName;
     }
 
-    public String getAdmissionNumber() {
-        return admissionNumber;
+    public String getEmployeeNumber() {
+        return employeeNumber;
     }
 
-    public void setAdmissionNumber(String admissionNumber) {
-        this.admissionNumber = admissionNumber;
+    public void setEmployeeNumber(String employeeNumber) {
+        this.employeeNumber = employeeNumber;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }
