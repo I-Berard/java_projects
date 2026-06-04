@@ -23,7 +23,7 @@ const StudentForm = () => {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const usersResponse = await api.get('/users');
+        const usersResponse = await api.get('/users/role/STUDENT');
         setUsers(usersResponse.data || []);
         
         if (isEdit) {

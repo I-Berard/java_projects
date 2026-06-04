@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { BookOpen, UserCheck, Calendar } from 'lucide-react';
 import api from '../api';
+import { useAuth } from '../context/AuthContext';
 
 const TeacherDashboard = () => {
+  const { user } = useAuth();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // In a real scenario, this endpoint should return only the teacher's courses
-    // e.g. /courses/teacher/{teacherId} but we don't have teacherId directly in mock
-    // For now we fetch all courses or mock it
     const fetchCourses = async () => {
+      if (!user?.id) return;
       try {
-        const response = await api.get('/courses');
-        setCourses(response.data.slice(0, 5)); // Just showing a few
+        const response = await api.get(`/courses/teacher/user/${user.id}`);
+        setCourses(response.data.slice(0, 5));
       } catch (error) {
         console.error("Error fetching courses", error);
       } finally {
@@ -22,7 +22,7 @@ const TeacherDashboard = () => {
     };
     
     fetchCourses();
-  }, []);
+  }, [user]);
 
   if (loading) return <div className="h-full flex items-center justify-center"><div className="animate-spin h-8 w-8 border-4 border-primary-500 border-t-transparent rounded-full"></div></div>;
 
@@ -76,8 +76,8 @@ const TeacherDashboard = () => {
               {courses.map((course, idx) => (
                 <tr key={course.id || idx} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
                   <td className="p-4 font-medium text-slate-900">{course.code}</td>
-                  <td className="p-4 text-slate-600">{course.title}</td>
-                  <td className="p-4 text-right text-slate-600">{course.description}</td>
+                  <td className="p-4 text-slate-600">{course.name}</td>
+                  <td className="p-4 text-right text-slate-600">{course.credits}</td>
                 </tr>
               ))}
               {courses.length === 0 && (

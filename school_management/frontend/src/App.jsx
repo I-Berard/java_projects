@@ -10,6 +10,10 @@ import TeacherDashboard from './pages/TeacherDashboard';
 import StudentDashboard from './pages/StudentDashboard';
 import StudentList from './pages/StudentList';
 import StudentForm from './pages/StudentForm';
+import TeacherList from './pages/TeacherList';
+import CourseList from './pages/CourseList';
+import EnrollmentList from './pages/EnrollmentList';
+import UserList from './pages/UserList';
 import PlaceholderPage from './pages/PlaceholderPage';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
@@ -55,10 +59,11 @@ function AppRoutes() {
         <Route path="students/new" element={<ProtectedRoute allowedRoles={['ADMIN']}><StudentForm /></ProtectedRoute>} />
         <Route path="students/:id/edit" element={<ProtectedRoute allowedRoles={['ADMIN']}><StudentForm /></ProtectedRoute>} />
         
-        {/* Placeholder Routes */}
-        <Route path="teachers" element={<ProtectedRoute allowedRoles={['ADMIN']}><PlaceholderPage title="Teacher Management" /></ProtectedRoute>} />
-        <Route path="courses" element={<ProtectedRoute allowedRoles={['ADMIN', 'TEACHER', 'STUDENT']}><PlaceholderPage title="Course Management" /></ProtectedRoute>} />
-        <Route path="enrollments" element={<ProtectedRoute allowedRoles={['ADMIN']}><PlaceholderPage title="Enrollment Management" /></ProtectedRoute>} />
+        {/* Admin / Management Routes */}
+        <Route path="teachers" element={<ProtectedRoute allowedRoles={['ADMIN']}><TeacherList /></ProtectedRoute>} />
+        <Route path="courses" element={<ProtectedRoute allowedRoles={['ADMIN', 'TEACHER', 'STUDENT']}><CourseList /></ProtectedRoute>} />
+        <Route path="enrollments" element={<ProtectedRoute allowedRoles={['ADMIN']}><EnrollmentList /></ProtectedRoute>} />
+        <Route path="users" element={<ProtectedRoute allowedRoles={['ADMIN']}><UserList /></ProtectedRoute>} />
         
       </Route>
       
@@ -78,3 +83,4 @@ function App() {
 }
 
 export default App;
+

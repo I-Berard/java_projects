@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LayoutDashboard, Users, BookOpen, UserCheck, GraduationCap, LogOut, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Users, BookOpen, UserCheck, GraduationCap, LogOut, Menu, X, Shield } from 'lucide-react';
 
 const DashboardLayout = () => {
   const { user, logout } = useAuth();
@@ -20,6 +20,7 @@ const DashboardLayout = () => {
     { label: 'Teachers', icon: Users, path: '/dashboard/teachers', roles: ['ADMIN'] },
     { label: 'Courses', icon: BookOpen, path: '/dashboard/courses', roles: ['ADMIN', 'TEACHER', 'STUDENT'] },
     { label: 'Enrollments', icon: UserCheck, path: '/dashboard/enrollments', roles: ['ADMIN'] },
+    { label: 'Users', icon: Shield, path: '/dashboard/users', roles: ['ADMIN'] },
   ];
 
   const allowedNavItems = navItems.filter(item => item.roles.includes(user?.role));
@@ -47,10 +48,10 @@ const DashboardLayout = () => {
               <Link 
                 key={item.path} 
                 to={item.path}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-colors ${
+                className={`flex items-center space-x-3 px-4 py-3 transition-colors ${
                   isActive 
-                  ? 'bg-primary-50 text-primary-700 font-medium' 
-                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                  ? 'bg-primary-50 text-primary-600 font-medium border-l-4 border-primary-600 rounded-r-xl' 
+                  : 'text-slate-500 hover:bg-slate-50 hover:text-slate-800 rounded-xl'
                 }`}
               >
                 <item.icon size={20} className={isActive ? 'text-primary-600' : 'text-slate-400'} />
@@ -64,10 +65,15 @@ const DashboardLayout = () => {
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
         {/* Topbar */}
-        <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 z-10 shrink-0">
+        <header className="h-16 bg-white border-b border-slate-100 flex items-center justify-between px-6 z-10 shrink-0">
           <button className="lg:hidden text-slate-500 hover:text-slate-700" onClick={() => setSidebarOpen(true)}>
             <Menu size={24} />
           </button>
+          
+          <div className="hidden md:flex items-center bg-slate-50 px-4 py-2 rounded-full w-96 border border-slate-100">
+            <input type="text" placeholder="What do you want to find?" className="bg-transparent border-none focus:ring-0 text-sm w-full outline-none text-slate-600 placeholder-slate-400" />
+            <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
           
           <div className="ml-auto flex items-center space-x-4">
             <div className="text-sm text-right hidden sm:block">
@@ -88,7 +94,7 @@ const DashboardLayout = () => {
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 overflow-auto p-6 bg-slate-50 animate-fade-in">
+        <div className="flex-1 overflow-auto p-6 bg-[#f3f0fa] animate-fade-in">
           <Outlet />
         </div>
       </main>

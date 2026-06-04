@@ -7,7 +7,6 @@ import api from '../api';
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('STUDENT');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { login } = useAuth();
@@ -19,7 +18,7 @@ const RegisterPage = () => {
     setError('');
     
     try {
-      const response = await api.post('/auth/register', { email, password, role });
+      const response = await api.post('/auth/register', { email, password });
       login(response.data.token);
       navigate('/dashboard');
     } catch (err) {
@@ -71,24 +70,6 @@ const RegisterPage = () => {
               className="glass-input block w-full pl-10 py-2.5 sm:text-sm"
               placeholder="••••••••"
             />
-          </div>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Role</label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-              <User size={18} />
-            </div>
-            <select
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              className="glass-input block w-full pl-10 py-2.5 sm:text-sm"
-            >
-              <option value="STUDENT">Student</option>
-              <option value="TEACHER">Teacher</option>
-              <option value="ADMIN">Admin</option>
-            </select>
           </div>
         </div>
 

@@ -36,18 +36,20 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [students, courses] = await Promise.all([
+        const [students, courses, teachers, enrollments] = await Promise.all([
           api.get('/students'),
           api.get('/courses'),
+          api.get('/teachers'),
+          api.get('/enrollments')
         ]);
         
         // In a real scenario we might have an endpoint for counts.
         // Assuming the endpoints return lists here:
         setStats({
           students: students.data.length || 0,
-          teachers: Math.floor(Math.random() * 15) + 5, // Mock if no direct endpoint
+          teachers: teachers.data.length || 0, // Mock if no direct endpoint
           courses: courses.data.length || 0,
-          enrollments: Math.floor(Math.random() * 100) + 20, // Mock
+          enrollments: enrollments.data.length || 0, // Mock
         });
       } catch (error) {
         console.error("Error fetching dashboard stats", error);
