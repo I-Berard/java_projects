@@ -8,14 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+import org.patient.school_management.services.TeacherService;
+import org.patient.school_management.model.Teacher;
+
 @RestController
 @RequestMapping("/api/courses")
 public class CourseController {
 
     private final CourseService courseService;
+    private final TeacherService teacherService;
 
-    public CourseController(CourseService courseService) {
+    public CourseController(CourseService courseService, TeacherService teacherService) {
         this.courseService = courseService;
+        this.teacherService = teacherService;
     }
 
     @PostMapping
@@ -47,6 +52,12 @@ public class CourseController {
     @GetMapping("/teacher/{teacherId}")
     public List<Course> getByTeacher(@PathVariable UUID teacherId) {
         return courseService.getByTeacher(teacherId);
+    }
+
+    @GetMapping("/teacher/user/{userId}")
+    public List<Course> getByUserId(@PathVariable UUID userId) {
+        Teacher teacher = teacherService.getByUserId(userId);
+        return courseService.getByTeacher(teacher.getId());
     }
 
     @GetMapping("/paged")

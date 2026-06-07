@@ -47,7 +47,7 @@ class StudentControllerTest {
                         .content("""
                         {
                             "email":"hello@gmail.com",
-                            "password":"Berard@123"
+                            "password":"Berard"
                         }
                         """))
                 .andReturn();

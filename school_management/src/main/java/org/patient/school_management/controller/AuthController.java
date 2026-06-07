@@ -24,7 +24,7 @@ public class AuthController {
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
-        user.setRole(Role.valueOf(request.getRole()));
+        user.setRole(Role.STUDENT); // Default to STUDENT role
 
         String token = authService.register(user);
 

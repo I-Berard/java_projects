@@ -59,6 +59,12 @@ public class TeacherService {
         teacherRepository.deleteById(id);
     }
 
+    public Teacher getByUserId(UUID userId) {
+        Teacher tch = teacherRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("Teacher not found for user ID: " + userId));
+        return cleanTeacher(tch);
+    }
+
     private Teacher cleanTeacher(Teacher teacher){
         teacher.getUser().setPassword(null);
         return teacher;

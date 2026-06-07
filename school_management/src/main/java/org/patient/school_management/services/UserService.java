@@ -31,6 +31,7 @@ public class UserService {
         }
 
         User user = new User();
+        user.setEmail(dto.email);
         user.setPassword(passwordEncoder.encode(dto.password));
 
         if (dto.role == null) {
@@ -49,6 +50,10 @@ public class UserService {
 
     public List<User> getAll() {
         return userRepository.findAll();
+    }
+
+    public List<User> getByRole(Role role) {
+        return userRepository.findByRole(role);
     }
 
     public User update(UUID id, User updatedUser) {
